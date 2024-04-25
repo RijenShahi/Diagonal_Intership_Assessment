@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function ListItemMover() {
   function generateRandomPositions() {
@@ -25,7 +25,7 @@ function ListItemMover() {
     setButtonClicked(true);
   }
 
-  const initialList = ['A', 'B', 'C', 'D', 'E'];
+  const initialList = ["A", "B", "C", "D", "E"];
   const [list, setList] = useState([...initialList]);
   const [newPositions, setNewPositions] = useState(generateRandomPositions());
   const [previousPositions, setPreviousPositions] = useState([]);
@@ -33,31 +33,49 @@ function ListItemMover() {
   const [buttonClicked, setButtonClicked] = useState(false);
 
   return (
-    <div>
-      <h2>List Item Mover</h2>
-      <p>Initial List:</p>
-      <ul>
-        {initialList.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-      <button onClick={handleMoveClick}>Move Items</button>
-      {buttonClicked && (
-        <>
-          <p>Previous Positions:</p>
-          <ul>
-            {previousList.map((item, index) => (
-              <li key={index}>{item}</li>
+    <div className="container border border-dark rounded">
+      <h2 className="mt-3 mb-3">3. List Item Mover</h2>
+      <div className="row fs-4">
+        <div className="col-4 text-center">
+          <p><b>Initial List:</b></p>
+          <ul className="list-group mb-3">
+            {initialList.map((item, index) => (
+              <li key={index} className="list-group-item">
+                {item}
+              </li>
             ))}
           </ul>
-          <p>Updated Positions:</p>
-          <ul>
-            {list.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </>
-      )}
+        </div>
+        {buttonClicked && (
+          <>
+            <div className="col-4 text-center">
+              <p><b>Previous Positions:</b></p>
+              <ul className="list-group mb-2">
+                {previousList.map((item, index) => (
+                  <li key={index} className="list-group-item">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col-4 text-center">
+              <p><b>Updated Positions:</b></p>
+              <ul className="list-group">
+                {list.map((item, index) => (
+                  <li key={index} className="list-group-item">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
+      </div>
+      <div className="d-flex justify-content-center mb-3">
+        <button onClick={handleMoveClick} className="btn btn-success fs-4">
+          Move Items
+        </button>
+      </div>
     </div>
   );
 }
